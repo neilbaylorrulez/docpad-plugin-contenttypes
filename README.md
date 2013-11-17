@@ -1,32 +1,72 @@
-# Additional Layouts Plugin for [DocPad](http://docpad.org)
+# Content Types Plugin for [DocPad](http://docpad.org)
+Create multiple content types using this format in your docpad.coffee
 
-[![NPM version](https://badge.fury.io/js/docpad-plugin-multiplelayouts.png)](https://npmjs.org/package/docpad-plugin-multiplelayouts "View this project on NPM")
-[![Flattr donate button](https://raw.github.com/balupton/flattr-buttons/master/badge-89x18.gif)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
-[![PayPayl donate button](https://www.paypalobjects.com/en_AU/i/btn/btn_donate_SM.gif)](https://www.paypal.com/au/cgi-bin/webscr?cmd=_flow&SESSION=IHj3DG3oy_N9A9ZDIUnPksOi59v0i-EWDTunfmDrmU38Tuohg_xQTx0xcjq&dispatch=5885d80a13c0db1f8e263663d3faee8d14f86393d55a810282b64afed84968ec "Donate once-off to this project using Paypal")
+<pre>
+docpadConfig = {
 
-Add additional layouts to your documents by adding 'additionalLayouts' to a document's metadata. 
+	plugins:
+		contenttypes:
+			types: [
+				name: 'Blog'
+				type: 'blog'
+				layout: ['default', 'data']
+				categories: [
+					'Technology', 'Other',
+					name: 'Design'
+					landing:
+						layout: ['category-design-landing', 'data']
+						pageSize: 10
+				]
+				fields:
+					author: 'person'
+				landing:
+					layout: ['default-landing', 'data']
+					pageSize: 5
+			,
+				name: 'FunBlog'
+				type: 'funBlog',
+				inherit: 'blog'
+				fields:
+					funText: 'text'
+			,
+				name: 'Person'
+				type: 'person'
+				noInherit: true
+				fields:
+					name: 'text'
+					quote: 'text'
+				]
+....
+}
+</pre>
 
-Convention:  `additionalLayouts: ["myLayout", "otherLayout"]`
+
 
 ## Install
 
-1. Install this plugin
-
-  ```
-	docpad install multiplelayouts
-	```
+```
+npm install --save docpad-plugin-contenttypes
+```
 
 
-## Configure
-For information on customising your plugin configuration you can refer to the [DocPad FAQ](https://github.com/bevry/docpad/wiki/FAQ)
 
 ## History
-[You can discover the history inside the `History.md` file](https://github.com/bevry/docpad-plugin-multiplelayouts/blob/master/History.md#files)
+You can discover the history inside the `History.md` file
 
-## Contributing
-[You can discover the contributing instructions inside the `Contributing.md` file](https://github.com/bevry/docpad-plugin-multiplelayouts/blob/master/Contributing.md#files)
 
 
 ## License
+This plugin is made ["public domain"](http://en.wikipedia.org/wiki/Public_domain) using the [Creative Commons Zero](http://creativecommons.org/publicdomain/zero/1.0/), as such before you publish your plugin you should place your desired license here and within the `LICENSE.md` file.
+
+If you are wanting to close-source your plugin, we suggest using the following:
+
+```
+Copyright [NAME](URL). All rights reserved.
+```
+
+If you are wanting to open-source your plugin, we suggest using the following:
+
+```
 Licensed under the incredibly [permissive](http://en.wikipedia.org/wiki/Permissive_free_software_licence) [MIT License](http://creativecommons.org/licenses/MIT/)
-<br/>Copyright &copy; 2012+ [Bevry Pty Ltd](http://bevry.me) <us@bevry.me>
+<br/>Copyright &copy; YEAR+ [NAME](URL)
+```
